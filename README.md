@@ -11,9 +11,9 @@ You must change in `appsettings.json`:
 
 ## More Info
 
-[DattingApp.API](https://github.com/ninetensfive/DatingApp/blob/master/DatingApp.API/README.md).
+[DattingApp.API](https://github.com/ninetensfive/DatingApp/blob/master/DatingApp.API/README.md)
 
-[DattingApp.SPA](https://github.com/ninetensfive/DatingApp/blob/master/DatingApp.SPA/README.md).
+[DattingApp.SPA](https://github.com/ninetensfive/DatingApp/blob/master/DatingApp.SPA/README.md)
 
 
 
