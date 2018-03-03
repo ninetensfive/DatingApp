@@ -9,7 +9,7 @@ You must change in `appsettings.json`:
 
 -"ConnectionStrings":{"DefaultConnection": "YourConnectionToSQLServer"}
 
-##More Info
+## More Info
 
 [DattingApp.API](https://github.com/ninetensfive/DatingApp/blob/master/DatingApp.API/README.md).
 
