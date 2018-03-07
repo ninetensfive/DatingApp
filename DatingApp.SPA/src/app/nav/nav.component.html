@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,7 +10,7 @@
       <a class="navbar-brand" href="#">Project name</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" *ngIf="loggedIn()">
         <li><a href="#">Mathes</a></li>
         <li><a href="#">Lists</a></li>
         <li><a href="#">Messages</a></li>
@@ -25,20 +25,15 @@
         <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Sign in</button>
       </form>
       <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
-          <li><a (click)="logout()">Logout</a></li>
-          <li class="dropdown"> 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-            aria-expanded="false">Welcome User <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+          <li class="dropdown" dropdown> 
+            <a href="#" class="dropdown-toggle" dropdownToggle>Welcome {{authService.decodedToken?.unique_name | titlecase}} <span class="caret"></span></a>
+            <ul class="dropdown-menu" *dropdownMenu>
               <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
               <li role="separator" class="divider"></li>
               <li><a (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
           </li>
-        </ul>
-      
+        </ul>      
     </div><!--/.navbar-collapse -->
   </div>
-
- 
 </nav>
