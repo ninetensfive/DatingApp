@@ -4,7 +4,7 @@ using DatingApp.API.Data.Contracts;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DatingApp.API.Data
+namespace DatingApp.API.Data.Repositories
 {
     public class DatingRepository : IDatingRepository
     {
