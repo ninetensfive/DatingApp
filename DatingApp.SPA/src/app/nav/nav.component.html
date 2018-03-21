@@ -25,6 +25,9 @@
         <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Sign in</button>
       </form>
       <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
+        <li>
+          <img src="{{photoUrl}}"> 
+        </li>
           <li class="dropdown" dropdown> 
             <a (click)="false" class="dropdown-toggle" dropdownToggle>Welcome {{authService.decodedToken?.unique_name | titlecase}} <span class="caret"></span></a>
             <ul class="dropdown-menu" *dropdownMenu>

@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data.Contracts;
 using DatingApp.API.DTOs;
 using DatingApp.API.Models;
@@ -17,8 +18,10 @@ namespace DatingApp.API.Controllers
     {
         private readonly IAuthRepository repository;
         private readonly IConfiguration configuration;
-        public AuthController(IAuthRepository repository, IConfiguration configuration)
+        private readonly IMapper mapper;
+        public AuthController(IAuthRepository repository, IConfiguration configuration, IMapper mapper)
         {
+            this.mapper = mapper;
             this.configuration = configuration;
             this.repository = repository;
         }
@@ -26,8 +29,9 @@ namespace DatingApp.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]UserRegisterDTO userRegisterDTO)
         {
-            if(!string.IsNullOrEmpty(userRegisterDTO.UserName)){
-                userRegisterDTO.UserName = userRegisterDTO.UserName.ToLower();     
+            if (!string.IsNullOrEmpty(userRegisterDTO.UserName))
+            {
+                userRegisterDTO.UserName = userRegisterDTO.UserName.ToLower();
             }
 
             if (await this.repository.UserExists(userRegisterDTO.UserName))
@@ -78,7 +82,9 @@ namespace DatingApp.API.Controllers
             var token = tokenHandler.CreateToken(tokenDesciptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new { tokenString });
+            var user = this.mapper.Map<UserForListDTO>(repositoryUser);
+
+            return Ok(new { tokenString, user });
         }
     }
 }

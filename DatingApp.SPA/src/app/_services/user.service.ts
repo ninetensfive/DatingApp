@@ -20,14 +20,24 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    getUser(id): Observable<User>{
+    getUser(id): Observable<User> {
         return this.authHttp.get(this.baseUrl + 'users/' + id)
             .map(response => <User>response.json())
             .catch(this.handleError);
     }
 
-    updateUser(id: number, user: User){
+    updateUser(id: number, user: User) {
         return this.authHttp.put(this.baseUrl + 'users/' + id, user);
+    }
+
+    setMainPhoto(userId: number, id: number) {
+        return this.authHttp.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {})
+            .catch(this.handleError);
+    }
+
+    deletePhoto(userId: number, id: number){
+        return this.authHttp.delete(this.baseUrl + 'users/' + userId + '/photos/' + id)
+            .catch(this.handleError);
     }
 
     private handleError(error: any){
@@ -39,9 +49,9 @@ export class UserService {
         const serverError = error.json();
         let modelStateErrors = '';
 
-        if(serverError){
-            for(const key in serverError){
-                if(serverError[key]){
+        if (serverError) {
+            for (const key in serverError) {
+                if (serverError[key]) {
                     modelStateErrors += serverError[key] + '\n';
                 }
             }
